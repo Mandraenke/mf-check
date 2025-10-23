@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meinungsfreiheit Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Meinungsfreiheit Checker</h1>
+            <p class="subtitle">Wurde deine Meinungsfreiheit wirklich eingeschränkt?</p>
+        </header>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <p>Quelle: Rechtsanwalt Gerhard Rahn - Fachanwalt für Strafrecht und Sozialrecht</p>
+        </footer>
+    </div>
+</body>
+</html>

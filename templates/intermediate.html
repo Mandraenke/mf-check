@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="history">
+    <h3>Dein Weg durch den Entscheidungsbaum:</h3>
+    <ul>
+        {% for item in history %}
+        <li>
+            <strong>{{ item.question }}</strong>
+            <span class="answer-badge answer-{{ item.answer|lower }}">{{ item.answer }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="card intermediate-card">
+    <h2>{{ step.question }}</h2>
+
+    <form method="POST" action="{{ url_for('answer') }}">
+        <button type="submit" name="answer" value="weiter" class="btn btn-primary btn-lg">Weiter</button>
+    </form>
+</div>
+{% endblock %}

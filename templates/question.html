@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="progress-indicator">
+    Frage {{ history|length + 1 }}
+</div>
+
+{% if history %}
+<div class="history">
+    <h3>Bisherige Antworten:</h3>
+    <ul>
+        {% for item in history %}
+        <li>
+            <strong>{{ item.question }}</strong>
+            <span class="answer-badge answer-{{ item.answer|lower }}">{{ item.answer }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<div class="card question-card">
+    <h2>{{ step.question }}</h2>
+
+    <form action="{{ url_for('answer') }}" method="post">
+        <div class="button-group">
+            <button type="submit" name="answer" value="ja" class="btn btn-yes">
+                Ja
+            </button>
+            <button type="submit" name="answer" value="nein" class="btn btn-no">
+                Nein
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="restart-link">
+    <a href="{{ url_for('restart') }}">Von vorne beginnen</a>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card start-card">
+    <div class="alert">
+        <h2>{{ step.question }}</h2>
+    </div>
+    <p class="description">{{ step.description }}</p>
+
+    <form action="{{ url_for('answer') }}" method="post">
+        <button type="submit" name="answer" value="start" class="btn btn-primary">
+            Jetzt prüfen
+        </button>
+    </form>
+</div>
+{% endblock %}

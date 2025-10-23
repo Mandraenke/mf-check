@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="history">
+    <h3>Dein Weg durch den Entscheidungsbaum:</h3>
+    <ul>
+        {% for item in history %}
+        <li>
+            <strong>{{ item.question }}</strong>
+            <span class="answer-badge answer-{{ item.answer|lower }}">{{ item.answer }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="card result-card result-{{ result.outcome }}">
+    <div class="result-icon">
+        {% if result.outcome == 'neutral' %}
+            ℹ️
+        {% elif result.outcome == 'success' %}
+            ✅
+        {% elif result.outcome == 'has_rights' %}
+            ⚖️
+        {% elif result.outcome == 'read_constitution' %}
+            ❌
+        {% endif %}
+    </div>
+
+    <h2>Ergebnis</h2>
+    <p class="result-text">{{ result.result }}</p>
+
+    {% if result.final %}
+    <div class="final-verdict">
+        <p class="verdict">{{ result.final }}</p>
+    </div>
+    {% endif %}
+
+    <div class="result-explanation">
+        {% if result.outcome == 'neutral' %}
+        <p>Deine Meinungsfreiheit wurde nicht eingeschränkt. Andere Menschen haben das Recht, deine Meinung nicht zu teilen oder ihr keine Aufmerksamkeit zu schenken.</p>
+        {% elif result.outcome == 'success' %}
+        <p>Du hast deine Meinung erfolgreich geäußert, ohne dass rechtliche Konsequenzen folgten.</p>
+        {% elif result.outcome == 'has_rights' %}
+        <p>Wenn du juristisch belangt wurdest, obwohl du nicht gegen geltende Gesetze verstoßen hast, hast du Recht und solltest dich wehren.</p>
+        {% elif result.outcome == 'read_constitution' %}
+        <p>Wenn deine Aussage gegen geltende Gesetze verstößt (z.B. Volksverhetzung, Verleumdung, etc.), dann schützt dich die Meinungsfreiheit nicht vor den Konsequenzen.</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="restart-button">
+    <a href="{{ url_for('restart') }}" class="btn btn-primary">Noch einmal prüfen</a>
+</div>
+{% endblock %}
