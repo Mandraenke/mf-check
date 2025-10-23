@@ -41,3 +41,15 @@ Thumbs.db
 # Environment
 .env
 .flaskenv
+
+# SSH Keys
+meinung_ssh_key
+meinung_ssh_key.pub
+
+# Photos/Images
+photo_*.jpeg
+photo_*.jpg
+photo_*.png
+
+# Project documentation (if sensitive)
+CLAUDE.md
